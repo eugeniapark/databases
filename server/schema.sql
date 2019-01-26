@@ -2,12 +2,6 @@ CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE rooms (
-  id                INT unsigned NOT NULL AUTO_INCREMENT,
-  roomname          VARCHAR(150) NOT NULL,
-  PRIMARY KEY (id)
-);
-
 CREATE TABLE users (
   id                INT unsigned NOT NULL AUTO_INCREMENT,
   username          VARCHAR(150) NOT NULL,
@@ -17,10 +11,10 @@ CREATE TABLE users (
 CREATE TABLE messages (
   id                INT unsigned NOT NULL AUTO_INCREMENT,
   text              VARCHAR(150) NOT NULL,
+  roomname          VARCHAR(150) NOT NULL,
   roomId            INT unsigned NOT NULL,
   userId            INT unsigned NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (roomId) REFERENCES rooms(id),
   FOREIGN KEY (userId) REFERENCES users(id)
 );
 

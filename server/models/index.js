@@ -2,7 +2,13 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function () {}, // a function which produces all the messages
+    get: function (callbackFromServer) {
+      let queryString = 'SELECT * FROM messages';
+      let queryArgs = [];
+      db.query(queryString, queryArgs, (err, results) => {
+        callbackFromServer(err, results);
+      });
+    }, // a function which produces all the messages
     post: function () {} // a function which can be used to insert a message into the database
   },
 
@@ -10,6 +16,7 @@ module.exports = {
     // Ditto as above.
     get: function () {},
     post: function () {}
-  }
+  },
+
 };
 
